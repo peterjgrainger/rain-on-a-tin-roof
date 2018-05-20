@@ -1,0 +1,86 @@
+{
+  "name": "alexa-skill-boilerplate",
+  "version": "1.0.0",
+  "description": "complete skill creation with ASK cli and now.sh",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf js && tsc",
+    "postinstall": "npm run build",
+    "precommit": "npm run build && npm test && npm run tslint",
+    "tslint": "tslint src/**/*.ts{,x}",
+    "test": "npm run build && ava",
+    "security": "snyk test",
+    "init": "ask init && now login",
+    "create-skill": "node js/skill-upload/create-skill-json.js",
+    "deploy:now": "now --public && now alias",
+    "deploy:aws": "npm run create-skill && cd app && ask deploy",
+    "deploy": "npm run build && npm run deploy:now && npm run deploy:aws",
+    "start": "node js/server/express-app.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect",
+    "ask:testing": "node js/helpers/open-ask-console",
+    "ask:enable": "node js/skill-upload/enable-skill.js"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "all": true,
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "js/**/!(*.test.*).[j]s?(x)",
+      "src/**/!(*.test.*).[j]s?(x)"
+    ],
+    "exclude": [
+      "js/models/intents/intent-definition.js"
+    ],
+    "reporter": [
+      "html",
+      "lcov",
+      "text",
+      "text-summary"
+    ],
+    "report-dir": "docs/reports/coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSmokingGnu/alexa-skill-boilerplate.git"
+  },
+  "keywords": [
+    "alexa",
+    "ASK",
+    "node",
+    "lambda",
+    "skills"
+  ],
+  "author": "peter@grainger.xyz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheSmokingGnu/alexa-skill-boilerplate/issues"
+  },
+  "homepage": "https://github.com/TheSmokingGnu/alexa-skill-boilerplate#readme",
+  "devDependencies": {
+    "ask-cli": "^1.1.0",
+    "husky": "^0.14.3",
+    "now": "^11.1.12",
+    "opn": "^5.2.0",
+    "tslint": "^5.9.1"
+  },
+  "dependencies": {
+    "@types/node": "^10.1.2",
+    "alexa-app": "^4.2.0",
+    "alexa-utterances": "^0.2.1",
+    "ava": "^0.25.0",
+    "clipboardy": "^1.2.2",
+    "coveralls": "^3.0.0",
+    "express": "^4.16.2",
+    "express-pino-logger": "^3.0.1",
+    "imgur": "^0.2.1",
+    "nyc": "^11.4.1",
+    "prompt": "^1.0.0",
+    "rimraf": "^2.6.2",
+    "snyk": "^1.65.1",
+    "typescript": "^2.6.2"
+  },
+  "snyk": true
+}

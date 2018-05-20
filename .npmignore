@@ -1,0 +1,11 @@
+node_modules
+docs
+.nyc_output
+docker
+js
+.gitignore
+.nvmrc
+.snyk
+.travis.yml
+package-lock.json
+README.md
