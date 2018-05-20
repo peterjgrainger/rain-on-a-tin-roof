@@ -1,5 +1,5 @@
 {
-  "name": "alexa-skill-boilerplate",
+  "name": "rain-on-a-tin-roof",
   "version": "1.0.0",
   "description": "complete skill creation with ASK cli and now.sh",
   "main": "index.js",
